@@ -4,7 +4,7 @@ final class AppStrings {
   static const AppStrings instance = AppStrings._();
 
   // General
-  String get appName => "appName";
+  String get appName => "Balon Sistem";
   String get appDescription => "appDescription";
   String get appVersion => "1.0.0";
   String get english => "English";
