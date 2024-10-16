@@ -11,6 +11,8 @@ class CustomTheme {
   final ThemeData lightTheme = ThemeData(
     scaffoldBackgroundColor: AppColors.instance.backgroundColor,
     primarySwatch: Colors.blue,
+
+    //!App Bar Theme
     appBarTheme: AppBarTheme(
       foregroundColor: AppColors.instance.black,
       elevation: 8,
@@ -18,18 +20,24 @@ class CustomTheme {
       // titleTextStyle: AppTextStyle.textSemibold
       //     .copyWith(color: AppColors.textBlack100)
     ),
+
+    //! İnput Decoration Theme
     inputDecorationTheme: InputDecorationTheme(
+      fillColor: AppColors.instance.grey,
+      focusColor: AppColors.instance.primary,
       contentPadding: EdgeInsets.symmetric(vertical: 1.5.h, horizontal: 2.5.w),
-      enabledBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: AppColors.instance.primary, width: 1.0),
+      enabledBorder: const OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.transparent, width: 1.0),
       ),
       focusedBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: AppColors.instance.primary, width: 1.0),
+        borderSide: BorderSide(color: AppColors.instance.primary, width: 1.5.w),
       ),
-      border: OutlineInputBorder(
-        borderSide: BorderSide(color: AppColors.instance.primary, width: 1.0),
+      border: const OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.transparent, width: 1.0),
       ),
     ),
+
+    //!Date Picker Theme
     datePickerTheme: DatePickerThemeData(
       headerBackgroundColor: AppColors.instance.primary,
       todayBorder: BorderSide(color: AppColors.instance.primary),
@@ -42,15 +50,18 @@ class CustomTheme {
               ? AppColors.instance.primary
               : AppColors.instance.white),
     ),
+
+    //!Elevated Button Theme
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
+          foregroundColor: AppColors.instance.white,
+          textStyle: TextStyle(
+            fontFamily: AppFonts.BOLD.value,
+            fontSize: 16.sp,
+          ),
           disabledBackgroundColor: AppColors.instance.black.withOpacity(0.3),
           shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.sp)),
-          textStyle: TextStyle(
-            fontFamily: AppFonts.SEMI_BOLD.value,
-            fontSize: 12.sp,
-          ),
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.r)),
           backgroundColor: AppColors.instance.black),
     ),
   );

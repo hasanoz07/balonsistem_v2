@@ -9,4 +9,11 @@ final class AppStrings {
   String get appVersion => "1.0.0";
   String get english => "English";
   String get turkish => "Türkçe";
+
+  // Login
+  String get welcome => "welcome";
+  String get loginDescription => "loginDescription";
+  String get email => "email";
+  String get password => "password";
+  String get login => "login";
 }

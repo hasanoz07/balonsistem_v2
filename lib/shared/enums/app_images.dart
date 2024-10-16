@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 enum AppImages {
   splashBranding("splash_branding"),
+  brandIcon("brand_icon"),
   splashLogo("splash_logo");
 
   final String value;

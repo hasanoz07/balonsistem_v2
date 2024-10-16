@@ -40,11 +40,12 @@ dependencies:
   # Responsive UI
   flutter_screenutil: ^5.9.3
   # Connection Control
-  connectivity_plus: ^5.0.2
+  connectivity_plus: ^6.0.5
   # Local Storage
   get_storage: ^2.1.1
   # UI
   loading_indicator: ^3.1.1
+  flutter_bounceable: ^1.1.0
   # Svg
   flutter_svg: ^2.0.10+1
 

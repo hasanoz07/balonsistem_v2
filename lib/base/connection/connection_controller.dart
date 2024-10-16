@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
@@ -18,56 +19,56 @@ class ConnectionController extends GetxController {
   @override
   Future<void> onInit() async {
     super.onInit();
-    getConnectivityType();
+    await getConnectivityType();
     _streamSubscription =
         _connectivity.onConnectivityChanged.listen(_updateState);
   }
 
   Future<void> getConnectivityType() async {
-    late ConnectivityResult connectivityResult;
+    late List<ConnectivityResult> connectivityResults;
     try {
-      connectivityResult = await (_connectivity.checkConnectivity());
+      connectivityResults = await _connectivity.checkConnectivity();
     } on PlatformException catch (e) {
       if (kDebugMode) {
         print(e);
       }
+      return;
     }
-    return _updateState(connectivityResult);
+    _updateState(connectivityResults);
   }
 
-  void _updateState(ConnectivityResult result) async {
-    switch (result) {
-      case ConnectivityResult.wifi:
-        connectionType = MConnectivityResult.wifi;
-        Get.isDialogOpen ?? Get.back();
-        break;
-      case ConnectivityResult.mobile:
-        connectionType = MConnectivityResult.mobile;
-        Get.isDialogOpen ?? Get.back();
-        break;
-      case ConnectivityResult.none:
-        connectionType = MConnectivityResult.none;
-        // Get.dialog(
-        //   AlertDialog(
-        //     title: const Text('No Internet Connection'),
-        //     content: const Text('Please check your internet connection'),
-        //     actions: <Widget>[
-        //       TextButton(
-        //         onPressed: () {
-        //           Get.back();
-        //         },
-        //         child: const Text('OK'),
-        //       ),
-        //     ],
-        //   ),
-        // );
-        break;
-      default:
-        connectionType = MConnectivityResult.none;
-        if (kDebugMode) {
-          print('Failed to get connection type');
-        }
-        break;
+  void _updateState(List<ConnectivityResult> results) {
+    if (results.contains(ConnectivityResult.wifi)) {
+      connectionType = MConnectivityResult.wifi;
+      if (Get.isDialogOpen == true) {
+        Get.back();
+      }
+    } else if (results.contains(ConnectivityResult.mobile)) {
+      connectionType = MConnectivityResult.mobile;
+      if (Get.isDialogOpen == true) {
+        Get.back();
+      }
+    } else if (results.contains(ConnectivityResult.none) || results.isEmpty) {
+      connectionType = MConnectivityResult.none;
+      Get.dialog(
+        AlertDialog(
+          title: const Text('No Internet Connection'),
+          content: const Text('Please check your internet connection'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Get.back();
+              },
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
+    } else {
+      connectionType = MConnectivityResult.none;
+      if (kDebugMode) {
+        print('Failed to get connection type');
+      }
     }
     update();
   }
