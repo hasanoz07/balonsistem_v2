@@ -9,10 +9,10 @@ class LoginController extends GetxController {
   TextEditingController passwordController = TextEditingController();
 
   Future<void> login() async {
-    LoadingHelpers.showLoadingDialog(Get.context!);
+    LoadingHelpers.showLoadingDialog();
 
     await Future.delayed(const Duration(seconds: 2), () {
-      LoadingHelpers.hideLoadingDialog(Get.context!);
+      LoadingHelpers.hideLoadingDialog();
       Get.offAllNamed('/navBar');
     });
   }

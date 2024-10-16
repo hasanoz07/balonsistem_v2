@@ -5,11 +5,11 @@ import 'package:get/get.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 
 class LoadingHelpers {
-  static void showLoadingDialog(BuildContext context) {
+  static void showLoadingDialog() {
     Get.dialog(_loadingWidget());
   }
 
-  static void hideLoadingDialog(BuildContext context) {
+  static void hideLoadingDialog() {
     Get.back();
   }
 

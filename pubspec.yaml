@@ -50,6 +50,9 @@ dependencies:
   flutter_svg: ^2.0.10+1
   # Icons
   flutter_boxicons: ^3.1.0
+  # Webview
+  url_launcher: ^6.3.1
+  
 
   
 
