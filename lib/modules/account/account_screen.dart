@@ -9,7 +9,11 @@ class AccountScreen extends GetView<AccountController> {
   @override
   Widget build(BuildContext context) {
     return BaseScaffold(
-      body: Container(),
+      body: Container(
+        child: const Center(
+          child: Text('Account Screen'),
+        ),
+      ),
     );
   }
 }

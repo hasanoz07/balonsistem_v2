@@ -9,7 +9,11 @@ class ReservationsScreen extends GetView<ReservationsController> {
   @override
   Widget build(BuildContext context) {
     return BaseScaffold(
-      body: Container(),
+      body: Container(
+        child: const Center(
+          child: Text('Reservations Screen'),
+        ),
+      ),
     );
   }
 }
