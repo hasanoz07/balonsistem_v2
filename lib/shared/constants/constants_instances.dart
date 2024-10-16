@@ -1,4 +1,5 @@
 import 'package:balonsistem/shared/constants/colors.dart';
+import 'package:balonsistem/shared/constants/paddings.dart';
 import 'package:balonsistem/shared/constants/strings.dart';
 
 final class ConstantsInstances {
@@ -9,4 +10,5 @@ final class ConstantsInstances {
   // General Instances
   final AppColors colors = AppColors.instance;
   final AppStrings strings = AppStrings.instance;
+  final AppPaddings paddings = AppPaddings.instance;
 }

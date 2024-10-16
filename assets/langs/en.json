@@ -3,5 +3,9 @@
     "loginDescription": "Login To Your Balon Sistem account",
     "email": "E-mail",
     "password": "Password",
-    "login": "Login"
+    "login": "Login",
+    "home": "Home",
+    "reservations": "Reservations",
+    "forecast": "Forecast",
+    "account": "Account"
 }

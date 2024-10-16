@@ -2,6 +2,8 @@ import 'package:balonsistem/modules/init/init_binding.dart';
 import 'package:balonsistem/modules/init/init_screen.dart';
 import 'package:balonsistem/modules/login/login_binding.dart';
 import 'package:balonsistem/modules/login/login_screen.dart';
+import 'package:balonsistem/modules/navbar/navbar_binding.dart';
+import 'package:balonsistem/modules/navbar/navbar_screen.dart';
 import 'package:get/get.dart';
 part 'app_routes.dart';
 
@@ -22,6 +24,11 @@ final class AppPages {
       name: Routes.login,
       page: () => const LoginScreen(),
       binding: LoginBinding(),
+    ),
+    GetPage(
+      name: Routes.navBar,
+      page: () => const NavbarScreen(),
+      binding: NavBarBinding(),
     ),
   ];
 }

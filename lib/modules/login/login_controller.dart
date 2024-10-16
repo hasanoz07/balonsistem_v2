@@ -13,6 +13,7 @@ class LoginController extends GetxController {
 
     await Future.delayed(const Duration(seconds: 2), () {
       LoadingHelpers.hideLoadingDialog(Get.context!);
+      Get.offAllNamed('/navBar');
     });
   }
 }

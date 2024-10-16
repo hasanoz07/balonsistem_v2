@@ -1,4 +1,6 @@
 import 'package:balonsistem/base/connection/connection_controller.dart';
+import 'package:balonsistem/modules/navbar/navbar_controller.dart';
+import 'package:balonsistem/shared/widgets/custom_navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -8,7 +10,7 @@ class BaseScaffold extends GetView<ConnectionController> {
   final bool? resizeToAvoidBottomInset;
   final Color? backgroundColor;
   final Widget? floatingActionButton;
-  final FloatingActionButtonLocation? floatingActionButtonLocation;
+  final NavBarController? navBarController;
   const BaseScaffold({
     super.key,
     this.appBar,
@@ -16,7 +18,7 @@ class BaseScaffold extends GetView<ConnectionController> {
     this.resizeToAvoidBottomInset,
     this.backgroundColor,
     this.floatingActionButton,
-    this.floatingActionButtonLocation,
+    this.navBarController,
   });
 
   @override
@@ -27,7 +29,9 @@ class BaseScaffold extends GetView<ConnectionController> {
       resizeToAvoidBottomInset: resizeToAvoidBottomInset,
       backgroundColor: backgroundColor,
       floatingActionButton: floatingActionButton,
-      floatingActionButtonLocation: floatingActionButtonLocation,
+      bottomNavigationBar: navBarController != null
+          ? CustomNavBar(controller: navBarController!)
+          : null,
     );
   }
 }

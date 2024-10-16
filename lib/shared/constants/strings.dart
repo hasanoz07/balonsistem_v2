@@ -16,4 +16,10 @@ final class AppStrings {
   String get email => "email";
   String get password => "password";
   String get login => "login";
+
+  //Navbar
+  String get home => "home";
+  String get reservations => "reservations";
+  String get forecast => "forecast";
+  String get account => "account";
 }

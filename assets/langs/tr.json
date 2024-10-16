@@ -3,5 +3,9 @@
     "loginDescription": "Balon Sistem Hesabınıza Giriş Yapın",
     "email": "E-posta",
     "password": "Şifre",
-    "login": "Giriş Yap"
+    "login": "Giriş Yap",
+    "home": "Anasayfa",
+    "reservations": "Rezervasyonlar",
+    "forecast": "Forecast",
+    "account": "Hesap"
 }

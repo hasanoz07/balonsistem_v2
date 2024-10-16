@@ -64,5 +64,17 @@ class CustomTheme {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.r)),
           backgroundColor: AppColors.instance.black),
     ),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      selectedItemColor: AppColors.instance.primary,
+      unselectedItemColor: AppColors.instance.black,
+      selectedLabelStyle: TextStyle(
+        fontFamily: AppFonts.SEMI_BOLD.value,
+        fontSize: 12.sp,
+      ),
+      unselectedLabelStyle: TextStyle(
+        fontFamily: AppFonts.LIGHT.value,
+        fontSize: 10.sp,
+      ),
+    ),
   );
 }
