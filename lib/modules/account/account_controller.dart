@@ -22,4 +22,6 @@ class AccountController extends GetxController {
   logout() {
     Get.offAllNamed(Routes.login);
   }
+
+  RxBool notificationStatus = true.obs;
 }

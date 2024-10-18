@@ -62,6 +62,11 @@ final class AppColors {
   Color get onlinetag => const Color(0xff6BD438);
   Color get gorgonzolaBlue => const Color(0xff5966d5);
 
+//Info Card Widget
+  Color get confirmationCard => const Color(0xff67ac5b);
+  Color get capacityCard => const Color(0xff49a6ef);
+  Color get waitingCard => const Color(0xfff29b38);
+  Color get rustesdCard => const Color(0xff00BCD4);
   // Helper function to convert hex color strings to Color
   Color hexToColor(String hexCode) {
     final hexColor = hexCode.replaceAll('#', '');

@@ -1,7 +1,9 @@
 import 'package:balonsistem/base/base_scaffold.dart';
 import 'package:balonsistem/modules/account/account_controller.dart';
+import 'package:balonsistem/shared/constants/colors.dart';
 import 'package:balonsistem/shared/enums/app_images.dart';
 import 'package:balonsistem/shared/widgets/custom_text.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boxicons/flutter_boxicons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,7 +24,7 @@ class AccountScreen extends GetView<AccountController> {
           children: [
             _AppBarWidget(controller: controller),
             SizedBox(
-              height: 40.h,
+              height: 10.h,
             ),
             _routeGoToWebsite(
               title: "Telif Hakkı",
@@ -44,11 +46,60 @@ class AccountScreen extends GetView<AccountController> {
               title: "Çerez Politikası",
               uri: controller.cerezPolitikasi,
             ),
+            _notificationStatusWidget(),
             _logOutButton(),
             const Expanded(child: SizedBox.shrink()),
             _bottomWidget(),
           ],
         ));
+  }
+
+  ListTile _routeGoToWebsite({required String title, required Uri uri}) {
+    return ListTile(
+      title: TextRegular(
+        text: title,
+        color: controller.constants.colors.black,
+        fontsize: 16.sp,
+      ),
+      leading: Icon(
+        Boxicons.bx_copyright,
+        color: controller.constants.colors.primary,
+      ),
+      onTap: () {
+        controller.goToWebSite(uri);
+      },
+      trailing: const Icon(Icons.chevron_right_outlined),
+    );
+  }
+
+  Obx _notificationStatusWidget() {
+    return Obx(
+      () => ListTile(
+        title: TextRegular(
+            text: "Bildirimler",
+            color: controller.constants.colors.black,
+            fontsize: 16.sp),
+        leading: controller.notificationStatus.value
+            ? Icon(
+                Icons.notifications_active_outlined,
+                color: AppColors.instance.primary,
+              )
+            : Icon(
+                Icons.notifications_off_outlined,
+                color: AppColors.instance.red,
+              ),
+        onTap: () async {
+          controller.logout();
+        },
+        trailing: CupertinoSwitch(
+          value: controller.notificationStatus.value,
+          activeColor: AppColors.instance.primary,
+          onChanged: (bool? value) {
+            controller.notificationStatus.value = value ?? false;
+          },
+        ),
+      ),
+    );
   }
 
   ListTile _logOutButton() {
@@ -68,7 +119,7 @@ class AccountScreen extends GetView<AccountController> {
   Column _bottomWidget() {
     return Column(
       children: [
-        AppImages.splashBranding.png,
+        AppImages.splashBranding.pngWithAttiributes(height: 65.h),
         SizedBox(
           height: 2.h,
         ),
@@ -77,27 +128,9 @@ class AccountScreen extends GetView<AccountController> {
           style: TextStyle(color: controller.constants.colors.greydark),
         ),
         SizedBox(
-          height: 40.h,
+          height: 30.h,
         )
       ],
-    );
-  }
-
-  ListTile _routeGoToWebsite({required String title, required Uri uri}) {
-    return ListTile(
-      title: TextRegular(
-        text: title,
-        color: controller.constants.colors.black,
-        fontsize: 16.sp,
-      ),
-      leading: Icon(
-        Boxicons.bx_copyright,
-        color: controller.constants.colors.primary,
-      ),
-      onTap: () {
-        controller.goToWebSite(uri);
-      },
-      trailing: const Icon(Icons.chevron_right_outlined),
     );
   }
 }

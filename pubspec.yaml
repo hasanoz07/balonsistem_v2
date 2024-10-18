@@ -46,12 +46,17 @@ dependencies:
   # UI
   loading_indicator: ^3.1.1
   flutter_bounceable: ^1.1.0
+  carousel_slider: ^5.0.0
   # Svg
   flutter_svg: ^2.0.10+1
   # Icons
   flutter_boxicons: ^3.1.0
   # Webview
   url_launcher: ^6.3.1
+  #Date 
+  intl: ^0.19.0
+  #Charts
+  fl_chart: ^0.69.0
   
 
   

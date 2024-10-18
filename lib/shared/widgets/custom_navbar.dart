@@ -1,5 +1,6 @@
 import 'package:balonsistem/modules/navbar/enum/bottom_pages.dart';
 import 'package:balonsistem/modules/navbar/navbar_controller.dart';
+import 'package:balonsistem/shared/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -17,6 +18,8 @@ class CustomNavBar extends StatelessWidget {
         currentIndex: controller.currentIndex.value,
         type: BottomNavigationBarType.fixed,
         onTap: controller.onTapNavBarItem,
+        backgroundColor: AppColors.instance.backgroundColor,
+        elevation: 0,
         items: [
           controller.navBarHelpers.build(
             type: BottomPages.home,

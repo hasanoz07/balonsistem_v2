@@ -18,7 +18,7 @@ enum AppImages {
 
 extension AppImagesExtension on AppImages {
   Image pngWithAttiributes({
-    required Color color,
+    Color? color,
     double? height,
   }) {
     return Image.asset(
