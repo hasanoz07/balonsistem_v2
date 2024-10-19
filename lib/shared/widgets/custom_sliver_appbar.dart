@@ -1,11 +1,14 @@
+import 'package:balonsistem/modules/navbar/navbar_controller.dart';
+import 'package:balonsistem/routes/app_pages.dart';
 import 'package:balonsistem/shared/constants/constants_instances.dart';
 import 'package:balonsistem/shared/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bounceable/flutter_bounceable.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 class CustomSliverAppBar extends StatelessWidget {
-  const CustomSliverAppBar({
+  CustomSliverAppBar({
     super.key,
     required this.height,
     this.flexibleSpace,
@@ -13,6 +16,8 @@ class CustomSliverAppBar extends StatelessWidget {
 
   final double height;
   final ConstantsInstances _constants = ConstantsInstances.instance;
+  final navbarController = Get.find<NavBarController>();
+
   final Widget? flexibleSpace;
   @override
   Widget build(
@@ -41,10 +46,20 @@ class CustomSliverAppBar extends StatelessWidget {
           ),
         ),
         actions: [
-          _actionButton(() {}, Icons.history),
-          _actionButton(() {}, Icons.notifications),
-          _actionButton(() {}, Icons.add_circle_outlined),
-          _actionButton(() {}, Icons.person)
+          _actionButton(
+            () => Get.toNamed(Routes.lastAddedReservations),
+            Icons.history,
+          ),
+          _actionButton(
+            () => Get.toNamed(Routes.notifications),
+            Icons.notifications,
+          ),
+          _actionButton(() => Get.toNamed(Routes.reservationAddUpdate),
+              Icons.add_circle_outlined),
+          _actionButton(
+            () => navbarController.onTapNavBarItem(3),
+            Icons.person,
+          )
         ],
         flexibleSpace: flexibleSpace);
   }

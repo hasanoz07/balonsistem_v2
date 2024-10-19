@@ -14,12 +14,13 @@ class CustomTheme {
 
     //!App Bar Theme
     appBarTheme: AppBarTheme(
-      foregroundColor: AppColors.instance.black,
-      elevation: 8,
-      color: Colors.transparent,
-      // titleTextStyle: AppTextStyle.textSemibold
-      //     .copyWith(color: AppColors.textBlack100)
-    ),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        foregroundColor: AppColors.instance.black,
+        centerTitle: true
+        // titleTextStyle: AppTextStyle.textSemibold
+        //     .copyWith(color: AppColors.textBlack100)
+        ),
 
     //! İnput Decoration Theme
     inputDecorationTheme: InputDecorationTheme(
