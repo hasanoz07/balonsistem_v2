@@ -19,7 +19,6 @@ class HomeController extends GetxController {
 
     if (picked != null) {
       date = DateFormat('yyyy-MM-dd').format(picked);
-      print("Date Has Been Selected: $date");
       selectedDayIndex.value = 3;
     }
   }

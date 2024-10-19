@@ -3,6 +3,7 @@ import 'package:balonsistem/modules/navbar/navbar_controller.dart';
 import 'package:balonsistem/shared/widgets/custom_navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BaseScaffold extends GetView<ConnectionController> {
   final PreferredSizeWidget? appBar;
@@ -30,7 +31,9 @@ class BaseScaffold extends GetView<ConnectionController> {
       backgroundColor: backgroundColor,
       floatingActionButton: floatingActionButton,
       bottomNavigationBar: navBarController != null
-          ? CustomNavBar(controller: navBarController!)
+          ? SizedBox(
+              height: navBarController!.currentIndex.value == 2 ? 43.h : 89.h,
+              child: CustomNavBar(controller: navBarController!))
           : null,
     );
   }
