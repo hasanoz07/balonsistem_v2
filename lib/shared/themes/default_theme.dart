@@ -24,17 +24,15 @@ class CustomTheme {
 
     //! İnput Decoration Theme
     inputDecorationTheme: InputDecorationTheme(
-      fillColor: AppColors.instance.grey,
-      focusColor: AppColors.instance.primary,
-      contentPadding: EdgeInsets.symmetric(vertical: 1.5.h, horizontal: 2.5.w),
-      enabledBorder: const OutlineInputBorder(
-        borderSide: BorderSide(color: Colors.transparent, width: 1.0),
+      contentPadding: EdgeInsets.symmetric(vertical: 1.5.h, horizontal: 10.w),
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: AppColors.instance.primary, width: 1.0),
       ),
       focusedBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: AppColors.instance.primary, width: 1.5.w),
+        borderSide: BorderSide(color: AppColors.instance.primary, width: 1.0),
       ),
-      border: const OutlineInputBorder(
-        borderSide: BorderSide(color: Colors.transparent, width: 1.0),
+      border: OutlineInputBorder(
+        borderSide: BorderSide(color: AppColors.instance.primary, width: 1.0),
       ),
     ),
 
