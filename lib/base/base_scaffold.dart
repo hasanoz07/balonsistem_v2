@@ -32,7 +32,7 @@ class BaseScaffold extends GetView<ConnectionController> {
       floatingActionButton: floatingActionButton,
       bottomNavigationBar: navBarController != null
           ? SizedBox(
-              height: navBarController!.currentIndex.value == 2 ? 43.h : 89.h,
+              height: navBarController!.currentIndex.value == 2 ? 44.h : 89.h,
               child: CustomNavBar(controller: navBarController!))
           : null,
     );

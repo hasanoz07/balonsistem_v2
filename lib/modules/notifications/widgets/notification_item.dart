@@ -1,45 +1,7 @@
-import 'package:balonsistem/base/base_scaffold.dart';
-import 'package:balonsistem/modules/notifications/notifications_controller.dart';
 import 'package:balonsistem/shared/constants/constants_instances.dart';
 import 'package:balonsistem/shared/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-class NotificationsScreen extends GetView<NotificationsController> {
-  const NotificationsScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return BaseScaffold(
-        appBar: AppBar(
-          title: TextSemiBold(
-            text: "Bildirimler",
-            color: controller.constants.colors.black,
-            fontsize: 18.sp,
-          ),
-        ),
-        body: Padding(
-          padding: controller.constants.paddings.horizontal12 +
-              controller.constants.paddings.bottom16 +
-              controller.constants.paddings.top16,
-          child: SingleChildScrollView(
-            child: Column(
-                children: List.generate(
-              10,
-              (index) => Padding(
-                padding: controller.constants.paddings.bottom12,
-                child: const NotificationItem(
-                  date: "12.12.2021",
-                  title: "Title",
-                  desc: "Description",
-                ),
-              ),
-            )),
-          ),
-        ));
-  }
-}
 
 class NotificationItem extends StatelessWidget {
   const NotificationItem({

@@ -8,11 +8,9 @@ class ForecastScreen extends GetView<ForecastController> {
 
   @override
   Widget build(BuildContext context) {
-    return BaseScaffold(
-      body: Container(
-        child: const Center(
-          child: Text('Forecast Screen'),
-        ),
+    return const BaseScaffold(
+      body: Center(
+        child: Text('Forecast Screen'),
       ),
     );
   }

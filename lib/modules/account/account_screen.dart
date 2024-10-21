@@ -20,37 +20,42 @@ class AccountScreen extends GetView<AccountController> {
           elevation: 0,
           toolbarHeight: 20.h,
         ),
-        body: Column(
-          children: [
-            _AppBarWidget(controller: controller),
-            SizedBox(
-              height: 10.h,
-            ),
-            _routeGoToWebsite(
-              title: "Telif Hakkı",
-              uri: controller.telifHakki,
-            ),
-            _routeGoToWebsite(
-              title: "Kullanım Koşulları",
-              uri: controller.kullanimKosullari,
-            ),
-            _routeGoToWebsite(
-              title: "Gizlilik",
-              uri: controller.gizlilikPolitikasi,
-            ),
-            _routeGoToWebsite(
-              title: "Kişisel Veriler",
-              uri: controller.kisiselVeriler,
-            ),
-            _routeGoToWebsite(
-              title: "Çerez Politikası",
-              uri: controller.cerezPolitikasi,
-            ),
-            _notificationStatusWidget(),
-            _logOutButton(),
-            const Expanded(child: SizedBox.shrink()),
-            _bottomWidget(),
-          ],
+        body: SingleChildScrollView(
+          physics: const ClampingScrollPhysics(),
+          child: Column(
+            children: [
+              _AppBarWidget(controller: controller),
+              SizedBox(
+                height: 10.h,
+              ),
+              _routeGoToWebsite(
+                title: "Telif Hakkı",
+                uri: controller.telifHakki,
+              ),
+              _routeGoToWebsite(
+                title: "Kullanım Koşulları",
+                uri: controller.kullanimKosullari,
+              ),
+              _routeGoToWebsite(
+                title: "Gizlilik",
+                uri: controller.gizlilikPolitikasi,
+              ),
+              _routeGoToWebsite(
+                title: "Kişisel Veriler",
+                uri: controller.kisiselVeriler,
+              ),
+              _routeGoToWebsite(
+                title: "Çerez Politikası",
+                uri: controller.cerezPolitikasi,
+              ),
+              _notificationStatusWidget(),
+              _logOutButton(),
+              SizedBox(
+                height: 45.h,
+              ),
+              _bottomWidget(),
+            ],
+          ),
         ));
   }
 
