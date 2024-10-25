@@ -1,6 +1,6 @@
 import 'package:balonsistem/base/base_scaffold.dart';
 import 'package:balonsistem/modules/home/home_controller.dart';
-import 'package:balonsistem/modules/home/widgets/chart.dart';
+import 'package:balonsistem/modules/home/widgets/home_chart.dart';
 import 'package:balonsistem/modules/home/widgets/home_custom_slider.dart';
 import 'package:balonsistem/modules/home/widgets/home_flexible_space_bar.dart';
 import 'package:balonsistem/shared/widgets/custom_sliver_appbar.dart';
@@ -38,7 +38,12 @@ class HomeScreen extends GetView<HomeController> {
                       padding: controller.constants.paddings.horizontal12,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [BarChartSample1()],
+                        children: [
+                          HomeChart(
+                            dataValues: controller.myDataValues,
+                            dataLabels: controller.myDataLabels,
+                          )
+                        ],
                       ),
                     ),
                   ],

@@ -14,6 +14,8 @@ final class AppPaddings {
   EdgeInsets get top8 => 8.padTop;
   EdgeInsets get top16 => 16.padTop;
   EdgeInsets get top100 => 100.padTop;
+  EdgeInsets get top110 => 110.padTop;
+  EdgeInsets get top120 => 120.padTop;
   //Bottom Padding
   EdgeInsets get bottom8 => 8.padBottom;
   EdgeInsets get bottom12 => 12.padBottom;
@@ -26,7 +28,9 @@ final class AppPaddings {
   EdgeInsets get right12 => 12.padRight;
 
   //All Padding
+  EdgeInsets get all32 => 32.padAll;
   EdgeInsets get all16 => 16.padAll;
+
   EdgeInsets get all12 => 12.padAll;
   EdgeInsets get all8 => 8.padAll;
 }

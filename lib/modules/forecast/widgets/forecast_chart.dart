@@ -1,14 +1,26 @@
 import 'dart:async';
 import 'dart:math';
-
 import 'package:balonsistem/shared/constants/colors.dart';
 import 'package:balonsistem/shared/extensions/color_ext.dart';
-
+import 'package:balonsistem/shared/helpers/loading_helpers.dart';
+import 'package:balonsistem/shared/widgets/custom_text.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bounceable/flutter_bounceable.dart';
+import 'package:flutter_boxicons/flutter_boxicons.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
-class BarChartSample1 extends StatefulWidget {
-  BarChartSample1({super.key});
+class ForecastChart extends StatefulWidget {
+  // Accept dataValues and dataLabels as parameters
+  final List<double> dataValues;
+  final List<String> dataLabels;
+
+  ForecastChart({
+    super.key,
+    required this.dataValues,
+    required this.dataLabels,
+  });
 
   List<Color> get availableColors => <Color>[
         AppColors.instance.dodgerollGold,
@@ -19,12 +31,26 @@ class BarChartSample1 extends StatefulWidget {
       AppColors.instance.rustesdCard.darken().withOpacity(0.3);
   final Color barColor = AppColors.instance.rustesdCard;
   final Color touchedBarColor = AppColors.instance.rustesdCard;
+  final List<String> months = [
+    'Ocak',
+    'Şubat',
+    'Mart',
+    'Nisan',
+    'Mayıs',
+    'Haziran',
+    'Temmuz',
+    'Ağustos',
+    'Eylül',
+    'Ekim',
+    'Kasım',
+    'Aralık'
+  ];
 
   @override
-  State<StatefulWidget> createState() => BarChartSample1State();
+  State<StatefulWidget> createState() => ForecastChartState();
 }
 
-class BarChartSample1State extends State<BarChartSample1> {
+class ForecastChartState extends State<ForecastChart> {
   final Duration animDuration = const Duration(milliseconds: 250);
 
   int touchedIndex = -1;
@@ -40,13 +66,40 @@ class BarChartSample1State extends State<BarChartSample1> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Text(
-                'Haftalık Forecast',
-                style: TextStyle(
-                  color: AppColors.instance.rustesdCard,
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
+              Row(
+                children: [
+                  Text(
+                    'Aylık Forecast',
+                    style: TextStyle(
+                      color: AppColors.instance.rustesdCard,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 15.w,
+                  ),
+                  Bounceable(
+                    onTap: () {
+                      showModalBottomSheet(
+                        context: context,
+                        builder: (context) => _monthPicker(widget.months),
+                      );
+                    },
+                    child: Row(
+                      children: [
+                        const TextBold(text: "Ay Seç"),
+                        SizedBox(
+                          width: 5.w,
+                        ),
+                        Icon(
+                          Boxicons.bx_calendar,
+                          color: AppColors.instance.primary,
+                        )
+                      ],
+                    ),
+                  )
+                ],
               ),
               const SizedBox(
                 height: 38,
@@ -114,66 +167,34 @@ class BarChartSample1State extends State<BarChartSample1> {
     );
   }
 
-//Veriler
-  List<BarChartGroupData> showingGroups() => List.generate(7, (i) {
-        switch (i) {
-          case 0:
-            return makeGroupData(0, 5, isTouched: i == touchedIndex);
-          case 1:
-            return makeGroupData(1, 6.5, isTouched: i == touchedIndex);
-          case 2:
-            return makeGroupData(2, 5, isTouched: i == touchedIndex);
-          case 3:
-            return makeGroupData(3, 7.5, isTouched: i == touchedIndex);
-          case 4:
-            return makeGroupData(4, 9, isTouched: i == touchedIndex);
-          case 5:
-            return makeGroupData(5, 11.5, isTouched: i == touchedIndex);
-          case 6:
-            return makeGroupData(6, 2, isTouched: i == touchedIndex);
-          default:
-            return throw Error();
-        }
+  // Generate bar groups based on dynamic dataValues
+  List<BarChartGroupData> showingGroups() =>
+      List.generate(widget.dataValues.length, (i) {
+        return makeGroupData(
+          i,
+          widget.dataValues[i],
+          isTouched: i == touchedIndex,
+        );
       });
 
   BarChartData mainBarData() {
     return BarChartData(
       barTouchData: BarTouchData(
         touchTooltipData: BarTouchTooltipData(
-          //Tooltip
+          // Tooltip
           getTooltipColor: (_) => Colors.blueGrey,
           tooltipHorizontalAlignment: FLHorizontalAlignment.right,
           tooltipMargin: -10,
           getTooltipItem: (group, groupIndex, rod, rodIndex) {
-            String weekDay;
-            switch (group.x) {
-              case 0:
-                weekDay = 'Monday';
-                break;
-              case 1:
-                weekDay = 'Tuesday';
-                break;
-              case 2:
-                weekDay = 'Wednesday';
-                break;
-              case 3:
-                weekDay = 'Thursday';
-                break;
-              case 4:
-                weekDay = 'Friday';
-                break;
-              case 5:
-                weekDay = 'Saturday';
-                break;
-              case 6:
-                weekDay = 'Sunday';
-                break;
-              default:
-                throw Error();
+            // Use dynamic labels
+            int index = group.x;
+            String label = '';
+            if (index >= 0 && index < widget.dataLabels.length) {
+              label = widget.dataLabels[index];
             }
-            //Tklayınca çıkan tooltip
+            // Tooltip content
             return BarTooltipItem(
-              '$weekDay\n',
+              '$label\n',
               const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
@@ -183,7 +204,7 @@ class BarChartSample1State extends State<BarChartSample1> {
                 TextSpan(
                   text: (rod.toY - 1).toString(),
                   style: const TextStyle(
-                    color: Colors.white, //widget.touchedBarColor,
+                    color: Colors.white, // widget.touchedBarColor,
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
                   ),
@@ -233,47 +254,27 @@ class BarChartSample1State extends State<BarChartSample1> {
     );
   }
 
+  // Generate x-axis labels based on dynamic dataLabels
   Widget getTitles(double value, TitleMeta meta) {
     const style = TextStyle(
       color: Colors.deepPurple,
       fontWeight: FontWeight.bold,
       fontSize: 14,
     );
-    Widget text;
-    switch (value.toInt()) {
-      case 0:
-        text = const Text('M', style: style);
-        break;
-      case 1:
-        text = const Text('T', style: style);
-        break;
-      case 2:
-        text = const Text('W', style: style);
-        break;
-      case 3:
-        text = const Text('T', style: style);
-        break;
-      case 4:
-        text = const Text('F', style: style);
-        break;
-      case 5:
-        text = const Text('S', style: style);
-        break;
-      case 6:
-        text = const Text('S', style: style);
-        break;
-      default:
-        text = const Text('', style: style);
-        break;
+    int index = value.toInt();
+    if (index >= 0 && index < widget.dataLabels.length) {
+      Widget text = Text(widget.dataLabels[index], style: style);
+      return SideTitleWidget(
+        axisSide: meta.axisSide,
+        space: 16,
+        child: text,
+      );
+    } else {
+      return const SizedBox.shrink();
     }
-    return SideTitleWidget(
-      axisSide: meta.axisSide,
-      space: 16,
-      child: text,
-    );
   }
 
-  //Buradan aşağısı tamamen animasyon için.
+  // Animation function remains mostly unchanged
   BarChartData randomData() {
     return BarChartData(
       barTouchData: BarTouchData(
@@ -307,60 +308,14 @@ class BarChartSample1State extends State<BarChartSample1> {
       borderData: FlBorderData(
         show: false,
       ),
-      barGroups: List.generate(7, (i) {
-        switch (i) {
-          case 0:
-            return makeGroupData(
-              0,
-              Random().nextInt(15).toDouble() + 6,
-              barColor: widget.availableColors[
-                  Random().nextInt(widget.availableColors.length)],
-            );
-          case 1:
-            return makeGroupData(
-              1,
-              Random().nextInt(15).toDouble() + 6,
-              barColor: widget.availableColors[
-                  Random().nextInt(widget.availableColors.length)],
-            );
-          case 2:
-            return makeGroupData(
-              2,
-              Random().nextInt(15).toDouble() + 6,
-              barColor: widget.availableColors[
-                  Random().nextInt(widget.availableColors.length)],
-            );
-          case 3:
-            return makeGroupData(
-              3,
-              Random().nextInt(15).toDouble() + 6,
-              barColor: widget.availableColors[
-                  Random().nextInt(widget.availableColors.length)],
-            );
-          case 4:
-            return makeGroupData(
-              4,
-              Random().nextInt(15).toDouble() + 6,
-              barColor: widget.availableColors[
-                  Random().nextInt(widget.availableColors.length)],
-            );
-          case 5:
-            return makeGroupData(
-              5,
-              Random().nextInt(15).toDouble() + 6,
-              barColor: widget.availableColors[
-                  Random().nextInt(widget.availableColors.length)],
-            );
-          case 6:
-            return makeGroupData(
-              6,
-              Random().nextInt(15).toDouble() + 6,
-              barColor: widget.availableColors[
-                  Random().nextInt(widget.availableColors.length)],
-            );
-          default:
-            return throw Error();
-        }
+      // Generate random bar groups based on dynamic data length
+      barGroups: List.generate(widget.dataValues.length, (i) {
+        return makeGroupData(
+          i,
+          Random().nextInt(15).toDouble() + 6,
+          barColor: widget
+              .availableColors[Random().nextInt(widget.availableColors.length)],
+        );
       }),
       gridData: const FlGridData(show: false),
     );
@@ -374,5 +329,35 @@ class BarChartSample1State extends State<BarChartSample1> {
     if (isPlaying) {
       await refreshState();
     }
+  }
+
+  Widget _monthPicker(List<String> months) {
+    return SizedBox(
+      width: 0.5.sw,
+      child: ListView.builder(
+        itemCount: months.length,
+        itemBuilder: (BuildContext context, int index) {
+          return ListTile(
+            title: TextSemiBold(
+                text: months[index], color: AppColors.instance.black),
+            onTap: () async {
+              LoadingHelpers.showLoadingDialog();
+              await Future.delayed(const Duration(seconds: 5));
+              LoadingHelpers.hideLoadingDialog();
+              Get.back();
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: TextBold(
+                    text: '${months[index]} seçildi',
+                    color: AppColors.instance.white,
+                  ),
+                  backgroundColor: AppColors.instance.primary,
+                ),
+              );
+            },
+          );
+        },
+      ),
+    );
   }
 }

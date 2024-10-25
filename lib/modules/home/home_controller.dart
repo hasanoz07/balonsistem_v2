@@ -22,4 +22,15 @@ class HomeController extends GetxController {
       selectedDayIndex.value = 3;
     }
   }
+
+  List<double> myDataValues = [5, 6.5, 5, 7.5, 9, 11.5, 2]; // Can be any length
+  List<String> myDataLabels = [
+    'M',
+    'T',
+    'W',
+    'T',
+    'F',
+    'S',
+    'S'
+  ]; // Can be any length
 }

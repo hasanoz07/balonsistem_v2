@@ -1,6 +1,8 @@
 import 'package:balonsistem/base/base_scaffold.dart';
 import 'package:balonsistem/modules/forecast/forecast_controller.dart';
+import 'package:balonsistem/modules/forecast/widgets/forecast_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class ForecastScreen extends GetView<ForecastController> {
@@ -8,9 +10,19 @@ class ForecastScreen extends GetView<ForecastController> {
 
   @override
   Widget build(BuildContext context) {
-    return const BaseScaffold(
-      body: Center(
-        child: Text('Forecast Screen'),
+    return Padding(
+      padding: controller.constantsInstances.paddings.all32,
+      child: BaseScaffold(
+        body: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: SizedBox(
+            width: 2.sw,
+            child: ForecastChart(
+              dataLabels: controller.myDataLabels,
+              dataValues: controller.myDataValues,
+            ),
+          ),
+        ),
       ),
     );
   }

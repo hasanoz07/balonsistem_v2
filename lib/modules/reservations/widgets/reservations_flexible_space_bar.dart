@@ -14,8 +14,7 @@ class ReservationsFlexibleSpaceBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return FlexibleSpaceBar(
       background: Padding(
-        padding: controller.constants.paddings.horizontal12 +
-            controller.constants.paddings.top16,
+        padding: controller.constants.paddings.horizontal12,
         child: Container(
           margin: controller.constants.paddings.top100,
           child: Column(

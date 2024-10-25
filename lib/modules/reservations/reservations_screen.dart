@@ -17,7 +17,7 @@ class ReservationsScreen extends GetView<ReservationsController> {
         headerSliverBuilder: (context, innerBoxIsScrolled) {
           return [
             CustomSliverAppBar(
-              height: 100.h,
+              height: 130.h,
               flexibleSpace:
                   ReservationsFlexibleSpaceBar(controller: controller),
             ),
