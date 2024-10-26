@@ -2,7 +2,9 @@ import 'package:balonsistem/base/base_scaffold.dart';
 import 'package:balonsistem/modules/account/account_controller.dart';
 import 'package:balonsistem/shared/constants/colors.dart';
 import 'package:balonsistem/shared/enums/app_images.dart';
+import 'package:balonsistem/shared/enums/user_data_keys.dart';
 import 'package:balonsistem/shared/widgets/custom_text.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boxicons/flutter_boxicons.dart';
@@ -168,10 +170,30 @@ class _AppBarWidget extends StatelessWidget {
             ),
             Row(
               children: [
-                Icon(
-                  Icons.account_circle_rounded,
-                  size: 80.r,
-                  color: controller.constants.colors.greydark,
+                CachedNetworkImage(
+                  imageUrl:
+                      "${controller.localStorageService.retrieveData(UserDataKeys.profilePhoto.name)}&format=png",
+                  placeholder: (context, url) => CircularProgressIndicator(
+                    color: controller.constants.colors.white,
+                  ),
+                  errorWidget: (context, url, error) => Icon(
+                    Icons.account_circle_rounded,
+                    size: 75.r,
+                    color: controller.constants.colors.greydark,
+                  ),
+                  imageBuilder: (context, imageProvider) {
+                    return Container(
+                      width: 75.w,
+                      height: 75.h,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                          image: imageProvider,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    );
+                  },
                 ),
                 SizedBox(
                   width: 10.w,
@@ -180,7 +202,8 @@ class _AppBarWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     TextSemiBold(
-                      text: "ABC Medya Destek",
+                      text: controller.localStorageService
+                          .retrieveData(UserDataKeys.name.name),
                       fontsize: 24.sp,
                       color: controller.constants.colors.white,
                     ),
@@ -188,7 +211,8 @@ class _AppBarWidget extends StatelessWidget {
                       height: 8.h,
                     ),
                     TextLight(
-                        text: "Süper Admin",
+                        text: controller.localStorageService
+                            .retrieveData(UserDataKeys.roleName.name),
                         fontsize: 12.sp,
                         color: controller.constants.colors.greydark)
                   ],

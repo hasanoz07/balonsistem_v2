@@ -1,1 +1,8 @@
-enum UserDataKeys { accessToken, userId, name, profilePhoto, compaines }
+enum UserDataKeys {
+  accessToken,
+  userId,
+  name,
+  roleName,
+  profilePhoto,
+  compaines
+}

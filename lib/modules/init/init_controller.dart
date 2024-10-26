@@ -37,6 +37,8 @@ class InitController extends GetxController {
         _localStorage.saveData(
             UserDataKeys.userId.name, _refreshRespModel.user.id);
         _localStorage.saveData(
+            UserDataKeys.roleName.name, _refreshRespModel.user.rolename);
+        _localStorage.saveData(
             UserDataKeys.name.name, _refreshRespModel.user.name);
         _localStorage.saveData(UserDataKeys.profilePhoto.name,
             _refreshRespModel.user.profilePhotoUrl);

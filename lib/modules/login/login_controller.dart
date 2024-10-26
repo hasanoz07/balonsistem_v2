@@ -43,6 +43,8 @@ class LoginController extends GetxController {
             UserDataKeys.userId.name, _loginRespModel.user.id);
         _localStorage.saveData(
             UserDataKeys.name.name, _loginRespModel.user.name);
+        _localStorage.saveData(
+            UserDataKeys.roleName.name, _loginRespModel.user.rolename);
         _localStorage.saveData(UserDataKeys.profilePhoto.name,
             _loginRespModel.user.profilePhotoUrl);
         _localStorage.saveData(

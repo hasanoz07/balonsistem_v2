@@ -60,6 +60,9 @@ dependencies:
   numberpicker: ^2.1.2
   #Network
   dio: ^5.7.0
+  http: ^1.2.2
+  #Cached Image
+  cached_network_image: ^3.4.1
   
 
   
