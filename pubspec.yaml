@@ -58,6 +58,8 @@ dependencies:
   #Charts
   fl_chart: ^0.69.0
   numberpicker: ^2.1.2
+  #Network
+  dio: ^5.7.0
   
 
   
