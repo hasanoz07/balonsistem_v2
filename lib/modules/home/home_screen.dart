@@ -18,7 +18,7 @@ class HomeScreen extends GetView<HomeController> {
           headerSliverBuilder: (context, innerBoxIsScrolled) {
             return [
               CustomSliverAppBar(
-                height: 300.h,
+                height: 310.h,
                 flexibleSpace: HomeFlexibleSpaceBar(controller: controller),
               ),
             ];

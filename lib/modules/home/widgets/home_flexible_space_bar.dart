@@ -19,7 +19,7 @@ class HomeFlexibleSpaceBar extends StatelessWidget {
       background: Padding(
         padding: controller.constants.paddings.horizontal12,
         child: Container(
-          margin: controller.constants.paddings.top110,
+          margin: controller.constants.paddings.top120,
           child: Column(
             children: [
               //Day Select
