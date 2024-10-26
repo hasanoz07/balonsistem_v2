@@ -34,4 +34,19 @@ class AuthApi {
       rethrow;
     }
   }
+
+  Future<Response> logout(
+    String token,
+  ) async {
+    try {
+      final Response response = await _apiService.post(_appUrl.logout,
+          options: Options(headers: {
+            'Authorization': "Bearer $token",
+            "Content-Type": "application/json"
+          }));
+      return response;
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

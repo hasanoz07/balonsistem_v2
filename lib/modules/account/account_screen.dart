@@ -94,7 +94,7 @@ class AccountScreen extends GetView<AccountController> {
                 color: AppColors.instance.red,
               ),
         onTap: () async {
-          controller.logout();
+          controller.logOut();
         },
         trailing: CupertinoSwitch(
           value: controller.notificationStatus.value,
@@ -115,7 +115,7 @@ class AccountScreen extends GetView<AccountController> {
           fontsize: 14.sp),
       leading: Icon(Icons.logout, color: controller.constants.colors.red),
       onTap: () async {
-        controller.logout();
+        controller.logOut();
       },
       trailing: const Icon(Icons.chevron_right_outlined),
     );
