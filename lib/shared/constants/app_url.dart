@@ -10,4 +10,5 @@ final class AppUrl {
 
   // Endpoints
   String get login => "/auth/login";
+  String get refresh => "/auth/refresh";
 }
